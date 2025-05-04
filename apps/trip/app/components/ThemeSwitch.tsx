@@ -23,9 +23,9 @@ const ThemeSwitch = () => {
       variant="outline"
     >
       {theme === "light" ? (
-        <SunIcon className="size-4" />
+        <SunIcon className="size-6" />
       ) : (
-        <MoonIcon className="size-4" />
+        <MoonIcon className="size-6" />
       )}
     </Toggle>
   );
