@@ -20,19 +20,52 @@ export default function Home() {
         <ThemeSwitch />
       </div>
       <div className="grid grid-cols-3 gap-4 p-4">
-        <Link to="/detail/Nha Trang">
-          <PhotoCard src="/nhatrang/01.jpeg" title="Nha Trang" />
-        </Link>
-        <Link to="/detail/nhatrang">
-          <PhotoCard src="/nhatrang/01.jpeg" title="Nha Trang" />
-        </Link>
-        <Link to="/detail/nhatrang">
-          <PhotoCard src="/nhatrang/01.jpeg" title="Nha Trang" />
-        </Link>
-        <Link to="/detail/nhatrang">
-          <PhotoCard src="/nhatrang/01.jpeg" title="Nha Trang" />
-        </Link>
+        {trips.map((trip) => (
+          <Link
+            to={`/detail/${trip.name}?image=${trip.image}&position=${trip.position}`}
+            key={trip.id}
+          >
+            <PhotoCard src={trip.image} title={trip.name} />
+          </Link>
+        ))}
       </div>
     </div>
   );
 }
+
+const trips = [
+  {
+    id: 1,
+    name: "Nha Trang",
+    image: "/nhatrang.jpeg",
+  },
+  {
+    id: 2,
+    name: "Maldives",
+    image: "/maldives.jpeg",
+    position: "bottom",
+  },
+  {
+    id: 3,
+    name: "Singapore",
+    image: "/singapore.jpeg",
+    position: "top",
+  },
+  {
+    id: 4,
+    name: "Osaka",
+    image: "/osaka.jpeg",
+    position: "bottom",
+  },
+  {
+    id: 5,
+    name: "Tong Young",
+    image: "/tongyoung.jpeg",
+    position: "bottom",
+  },
+  {
+    id: 6,
+    name: "Tae An",
+    image: "/taean.jpeg",
+  },
+];

@@ -1,7 +1,8 @@
 import ThemeSwitch from "~/components/ThemeSwitch";
 import type { Route } from "./+types/detail";
-import { Link } from "react-router";
+import { Link, useLocation } from "react-router";
 import { motion } from "framer-motion";
+import { cn } from "@haeram/lib/utils";
 
 export function meta({ params }: Route.MetaArgs) {
   return [
@@ -11,6 +12,9 @@ export function meta({ params }: Route.MetaArgs) {
 }
 
 export default function Detail({ params: { title } }: Route.ComponentProps) {
+  const location = useLocation();
+  const image = new URLSearchParams(location.search).get("image");
+  const position = new URLSearchParams(location.search).get("position");
   return (
     <div className="min-h-screen">
       <motion.div
@@ -26,9 +30,13 @@ export default function Detail({ params: { title } }: Route.ComponentProps) {
       </motion.div>
       <div className="relative">
         <motion.img
-          src="/nhatrang/01.jpeg"
-          alt="nhatrang"
-          className="w-full object-cover"
+          src={image ?? ""}
+          alt={title}
+          className={cn("w-full object-cover", {
+            "object-bottom": position === "bottom",
+            "object-center": position === "center",
+            "object-top": position === "top",
+          })}
           initial={{ height: "100vh" }}
           animate={{ height: "13rem" }}
           transition={{
@@ -36,18 +44,18 @@ export default function Detail({ params: { title } }: Route.ComponentProps) {
             ease: [0.6, 0.05, 0.01, 0.9],
           }}
         />
-
         <motion.div
-          className="absolute top-0 left-0 "
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ duration: 3, ease: "easeInOut" }}
+          className="absolute top-0 left-0 w-full h-full bg-primary-foreground/30"
+        ></motion.div>
+        <motion.div
+          className="absolute top-0 left-0 whitespace-nowrap text-primary"
           layoutId={`title-${title}`}
-          initial={{
-            top: "calc(50% - 10px)",
-            left: "calc(50% - 10px)",
-            fontSize: "2rem",
-          }}
           animate={{
-            top: "10px",
-            left: "10px",
+            top: "20px",
+            left: "20px",
             fontSize: "3rem",
           }}
           transition={{
