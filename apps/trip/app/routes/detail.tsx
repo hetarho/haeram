@@ -14,11 +14,10 @@ export function meta({ params }: Route.MetaArgs) {
 export default function Detail({ params: { title } }: Route.ComponentProps) {
   const location = useLocation();
   const image = new URLSearchParams(location.search).get("image");
-  const position = new URLSearchParams(location.search).get("position");
   return (
-    <div className="min-h-screen">
+    <div className="h-screen flex flex-col">
       <motion.div
-        className="relative flex h-10 items-center justify-between w-full px-8 py-4"
+        className="relative flex h-10 items-center justify-between w-full px-8 py-4 shrink-0"
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ duration: 3, ease: "easeInOut" }}
@@ -28,17 +27,14 @@ export default function Detail({ params: { title } }: Route.ComponentProps) {
         </div>
         <ThemeSwitch />
       </motion.div>
-      <div className="relative">
+      <div className="relative flex-1">
         <motion.img
           src={image ?? ""}
+          layoutId={`image-${image}`}
           alt={title}
-          className={cn("w-full object-cover", {
-            "object-bottom": position === "bottom",
-            "object-center": position === "center",
-            "object-top": position === "top",
-          })}
-          initial={{ height: "100vh" }}
-          animate={{ height: "13rem" }}
+          className="w-full object-cover"
+          animate={{ height: "100%" }}
+          initial={{ height: "13rem" }}
           transition={{
             duration: 3,
             ease: [0.6, 0.05, 0.01, 0.9],
@@ -52,7 +48,6 @@ export default function Detail({ params: { title } }: Route.ComponentProps) {
         ></motion.div>
         <motion.div
           className="absolute top-0 left-0 whitespace-nowrap text-primary"
-          layoutId={`title-${title}`}
           animate={{
             top: "20px",
             left: "20px",

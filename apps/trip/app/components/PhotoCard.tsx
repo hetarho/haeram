@@ -10,7 +10,12 @@ export default function PhotoCard({
   return (
     <div className="relative overflow-hidden rounded-lg">
       <AspectRatio ratio={1}>
-        <img src={src} alt="photo" className="object-cover w-full h-full" />
+        <motion.img
+          layoutId={`image-${src}`}
+          src={src}
+          alt="photo"
+          className="object-cover w-full h-full"
+        />
       </AspectRatio>
       <div className="absolute top-0 left-0 w-full h-full bg-gradient-to-t from-primary-foreground/30 to-transparent"></div>
       <motion.div

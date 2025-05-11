@@ -21,10 +21,7 @@ export default function Home() {
       </div>
       <div className="grid grid-cols-3 gap-4 p-4">
         {trips.map((trip) => (
-          <Link
-            to={`/detail/${trip.name}?image=${trip.image}&position=${trip.position}`}
-            key={trip.id}
-          >
+          <Link to={`/detail/${trip.name}?image=${trip.image}`} key={trip.id}>
             <PhotoCard src={trip.image} title={trip.name} />
           </Link>
         ))}
@@ -43,25 +40,21 @@ const trips = [
     id: 2,
     name: "Maldives",
     image: "/maldives.jpeg",
-    position: "bottom",
   },
   {
     id: 3,
     name: "Singapore",
     image: "/singapore.jpeg",
-    position: "top",
   },
   {
     id: 4,
     name: "Osaka",
     image: "/osaka.jpeg",
-    position: "bottom",
   },
   {
     id: 5,
     name: "Tong Young",
     image: "/tongyoung.jpeg",
-    position: "bottom",
   },
   {
     id: 6,
