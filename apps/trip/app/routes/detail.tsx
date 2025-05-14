@@ -34,7 +34,7 @@ export default function Detail({ params: { title } }: Route.ComponentProps) {
           alt={title}
           className="w-full object-cover"
           animate={{ height: "100%" }}
-          initial={{ height: "13rem" }}
+          initial={{ height: "20%" }}
           transition={{
             duration: 3,
             ease: [0.6, 0.05, 0.01, 0.9],

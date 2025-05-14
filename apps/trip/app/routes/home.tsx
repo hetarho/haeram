@@ -12,14 +12,14 @@ export function meta({}: Route.MetaArgs) {
 
 export default function Home() {
   return (
-    <div className="flex flex-col min-h-screen">
+    <div className="flex flex-col min-h-screen items-center gap-10">
       <div className="flex h-10 items-center justify-between w-full px-8 py-4">
         <div>
           <h1 className="text-l font-bold">Haeram's trip</h1>
         </div>
         <ThemeSwitch />
       </div>
-      <div className="grid grid-cols-3 gap-4 p-4">
+      <div className="grid grid-cols-3 gap-4 p-4 max-w-200 w-full">
         {trips.map((trip) => (
           <Link to={`/detail/${trip.name}?image=${trip.image}`} key={trip.id}>
             <PhotoCard src={trip.image} title={trip.name} />
